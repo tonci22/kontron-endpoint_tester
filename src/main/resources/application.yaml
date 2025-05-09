@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: "Kontron endpoint tester"
+server:
+  address: 0.0.0.0
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    com.kontron.endpoint.tester: DEBUG
+
+app:
+  cgms:
+    controller-enabled: false
+    http-enabled: true
+    base-url: "http://localhost:8590/"
+    path-prefix: "cgms"
+    alarms-path: "/cnms/alarms"
+
+  kms:
+    controller-enabled: false
+    http-enabled: true
+    base-url: "http://localhost:8591/"
+    path-prefix: "kms"
+    alarms-path: "/cnms/alarms"

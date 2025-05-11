@@ -20,15 +20,15 @@ public class HttpClientHandler {
 
     public Mono<String> fetch(String endpointName, String url) {
         return httpClientService.fetch(url)
-                .doOnNext(response -> log.info("{}: \n{}", endpointName, response))
+                .doOnNext(response -> log.info("{} ({}): \n{}", endpointName, url, response))
                 .doOnError(error -> {
                     if (error instanceof WebClientResponseException.NotFound) {
-                        log.error("{}: Endpoint not found", endpointName);
+                        log.error("{}: Endpoint not found ({})", endpointName, url);
                     } else if (error instanceof WebClientRequestException) {
-                        log.error("{}: Location not reachable", endpointName);
+                        log.error("{}: Location not reachable ({})", endpointName, url);
                     }
                     else {
-                        log.error("{}: Error: {}", endpointName, error);
+                        log.error("{} ({}): Error: {}", endpointName, url, error);
                     }
                 })
                 .onErrorResume(error -> Mono.empty());

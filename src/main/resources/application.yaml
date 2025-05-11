@@ -12,15 +12,27 @@ logging:
 
 app:
   cgms:
-    controller-enabled: false
-    http-enabled: true
-    base-url: "http://localhost:8590/"
-    path-prefix: "cgms"
-    alarms-path: "/cnms/alarms"
+    base-url: "http://localhost:8590/cgms"
+    alarms:
+      controller-enabled: true
+      controller-path: "/rest/cnms/sbi/vnf/cgms"
+      http-enabled: true
+      http-path: "/cnms/alarms"
+    performance:
+      controller-enabled: true
+      controller-path: "/rest/cnms/sbi/vnf/cgms"
+      http-enabled: true
+      http-path: "/cnms/alarms"
 
   kms:
-    controller-enabled: false
-    http-enabled: true
-    base-url: "http://localhost:8591/"
-    path-prefix: "kms"
-    alarms-path: "/cnms/alarms"
+    base-url: "http://localhost:8591/kms"
+    alarms:
+      controller-enabled: true
+      controller-path: "/rest/cnms/sbi/vnf/kms"
+      http-enabled: true
+      http-path: "/cnms/alarms"
+    performance:
+      controller-enabled: true
+      controller-path: "/rest/cnms/sbi/vnf/kms"
+      http-enabled: true
+      http-path: "/cnms/alarms"

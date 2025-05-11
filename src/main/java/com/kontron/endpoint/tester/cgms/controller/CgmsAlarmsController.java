@@ -7,28 +7,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/rest/cnms/sbi/vnf/cgms")
-@ConditionalOnProperty(name = "app.cgms.controller-enabled", havingValue = "true")
+@RequestMapping("${app.cgms.alarms.controller-path}")
+@ConditionalOnProperty(name = "app.cgms.alarms.controller-enabled", havingValue = "true")
 public class CgmsAlarmsController {
     private static final Logger log = LoggerFactory.getLogger(CgmsAlarmsController.class);
 
     @PostMapping("/alarms")
     public ResponseEntity<String> getCgmsAlarmPost(@RequestBody String alarmPayload) {
-        if (alarmPayload == null || alarmPayload.isEmpty()) {
-            return ResponseEntity.badRequest().build();
-        }
-        log.info("Received CGMS alarm:\n{}", alarmPayload);
-
-        return ResponseEntity.ok().build();
+        return getInfo(alarmPayload);
     }
 
     @PutMapping("/alarms")
     public ResponseEntity<String> getCgmsAlarmPut(@RequestBody String alarmPayload) {
+        return getInfo(alarmPayload);
+    }
+
+    private static ResponseEntity<String> getInfo(String alarmPayload) {
         if (alarmPayload == null || alarmPayload.isEmpty()) {
             return ResponseEntity.badRequest().build();
         }
         log.info("Received CGMS alarm:\n{}", alarmPayload);
-
         return ResponseEntity.ok().build();
     }
 }

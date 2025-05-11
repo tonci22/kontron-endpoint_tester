@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConditionalOnProperty(name = "app.cgms.http-enabled", havingValue = "true")
+@ConditionalOnProperty(name = "app.cgms.alarms.http-enabled", havingValue = "true")
 public class CgmsHttpClient {
     private final Logger log = LoggerFactory.getLogger(CgmsHttpClient.class);
 
@@ -27,7 +27,7 @@ public class CgmsHttpClient {
     public void pollAlarms() {
         httpClientHandler.fetch(
                "CGMS CNMS alarms",
-                properties.getFullUrl()
+                properties.getAlarmUrl()
        ).subscribe();
     }
 }

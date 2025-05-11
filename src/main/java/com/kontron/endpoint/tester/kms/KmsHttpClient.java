@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConditionalOnProperty(name = "app.kms.http-enabled", havingValue = "true")
+@ConditionalOnProperty(name = "app.kms.alarms.http-enabled", havingValue = "true")
 public class KmsHttpClient {
     private final Logger log = LoggerFactory.getLogger(KmsHttpClient.class);
 
@@ -27,7 +27,7 @@ public class KmsHttpClient {
     public void pollAlarms() {
         httpClientHandler.fetch(
                 "KMS CNMS alarms",
-                properties.getFullUrl()
+                properties.getAlarmUrl()
         ).subscribe();
     }
 }

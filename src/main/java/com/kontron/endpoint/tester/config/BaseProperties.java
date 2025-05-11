@@ -1,14 +1,9 @@
 package com.kontron.endpoint.tester.config;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
-@ConfigurationProperties(prefix = "app")
 public abstract class BaseProperties {
     private String baseUrl;
-    private String pathPrefix;
-    private String alarmsPath = "";
-    private boolean httpEnabled = true;
-    private boolean controllerEnabled = true;
+    private MonitoringConfig alarms;
+    private MonitoringConfig performance;
 
     public String getBaseUrl() {
         return baseUrl;
@@ -18,45 +13,75 @@ public abstract class BaseProperties {
         this.baseUrl = baseUrl;
     }
 
-    public String getPathPrefix() {
-        return pathPrefix;
+    public String getAlarmUrl() {
+        return getFullUrl(alarms.getHttpPath());
     }
 
-    public void setPathPrefix(String pathPrefix) {
-        this.pathPrefix = pathPrefix;
+    public String getPerformanceUrl() {
+        return getFullUrl(performance.getHttpPath());
     }
 
-    public String getAlarmsPath() {
-        return alarmsPath;
+    public String getFullUrl(String path) {
+        String normalizedPath = path != null ? "/" + path.replaceAll("^/+|/+$", "") : "";
+        return getBaseUrl() + normalizedPath;
     }
 
-    public void setAlarmsPath(String alarmsPath) {
-        this.alarmsPath = alarmsPath;
+
+
+    public MonitoringConfig getAlarms() {
+        return alarms;
     }
 
-    public boolean isHttpEnabled() {
-        return httpEnabled;
+    public void setAlarms(MonitoringConfig alarms) {
+        this.alarms = alarms;
     }
 
-    public void setHttpEnabled(boolean httpEnabled) {
-        this.httpEnabled = httpEnabled;
+    public MonitoringConfig getPerformance() {
+        return performance;
     }
 
-    public boolean isControllerEnabled() {
-        return controllerEnabled;
+    public void setPerformance(MonitoringConfig performance) {
+        this.performance = performance;
     }
 
-    public void setControllerEnabled(boolean controllerEnabled) {
-        this.controllerEnabled = controllerEnabled;
-    }
 
-    public String getFullUrl() {
-        // Remove trailing slash from baseUrl if present
-        String normalizedBaseUrl = baseUrl.endsWith("/") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;
-        // Normalize path components
-        String normalizedPrefix = pathPrefix != null ? "/" + pathPrefix.replaceAll("^/+|/+$", "") : "";
-        String normalizedPath = alarmsPath != null ? "/" + alarmsPath.replaceAll("^/+|/+$", "") : "";
+    public static class MonitoringConfig {
+        private boolean controllerEnabled;
+        private String controllerPath;
+        private boolean httpEnabled;
+        private String httpPath;
 
-        return normalizedBaseUrl + normalizedPrefix + normalizedPath;
+        // getters and setters
+        public boolean isControllerEnabled() {
+            return controllerEnabled;
+        }
+
+        public void setControllerEnabled(boolean controllerEnabled) {
+            this.controllerEnabled = controllerEnabled;
+        }
+
+        public String getControllerPath() {
+            return controllerPath;
+        }
+
+        public void setControllerPath(String controllerPath) {
+            this.controllerPath = controllerPath;
+        }
+
+        public boolean isHttpEnabled() {
+            return httpEnabled;
+        }
+
+        public void setHttpEnabled(boolean httpEnabled) {
+            this.httpEnabled = httpEnabled;
+        }
+
+        public String getHttpPath() {
+            return httpPath;
+        }
+
+        public void setHttpPath(String httpPath) {
+            this.httpPath = httpPath;
+        }
     }
 }

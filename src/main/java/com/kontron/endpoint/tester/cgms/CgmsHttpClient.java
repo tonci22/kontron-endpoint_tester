@@ -2,24 +2,22 @@ package com.kontron.endpoint.tester.cgms;
 
 import com.kontron.endpoint.tester.config.CgmsProperties;
 import com.kontron.endpoint.tester.http.HttpClientHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+@Slf4j
+@RequiredArgsConstructor
 @Component
 @ConditionalOnProperty(name = "app.cgms.alarms.http-enabled", havingValue = "true")
 public class CgmsHttpClient {
-    private final Logger log = LoggerFactory.getLogger(CgmsHttpClient.class);
 
     private final CgmsProperties properties;
     private final HttpClientHandler httpClientHandler;
 
-    public CgmsHttpClient(CgmsProperties properties,
-                          HttpClientHandler httpClientHandler) {
-        this.properties = properties;
-        this.httpClientHandler = httpClientHandler;
+    static {
         log.debug("CGMS HTTP client initialized");
     }
 

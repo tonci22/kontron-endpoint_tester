@@ -1,17 +1,17 @@
 package com.kontron.endpoint.tester.kms.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("${app.kms.alarms.controller-path}")
 @ConditionalOnProperty(name = "app.kms.alarms.controller-enabled", havingValue = "true")
 public class KmsAlarmsController {
-    private static final Logger log = LoggerFactory.getLogger(KmsAlarmsController.class);
-
 
     @PostMapping("/alarms")
     public ResponseEntity<String> getKmsAlarmPost(@RequestBody String alarmPayload) {

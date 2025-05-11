@@ -1,16 +1,17 @@
 package com.kontron.endpoint.tester.cgms.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("${app.cgms.alarms.controller-path}")
 @ConditionalOnProperty(name = "app.cgms.alarms.controller-enabled", havingValue = "true")
 public class CgmsAlarmsController {
-    private static final Logger log = LoggerFactory.getLogger(CgmsAlarmsController.class);
 
     @PostMapping("/alarms")
     public ResponseEntity<String> getCgmsAlarmPost(@RequestBody String alarmPayload) {

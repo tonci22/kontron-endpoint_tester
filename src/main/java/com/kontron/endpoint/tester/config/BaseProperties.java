@@ -4,13 +4,17 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Getter
 @Setter
 @ToString
 public abstract class BaseProperties {
     private String baseUrl;
-    private MonitoringConfig alarms;
-    private MonitoringConfig performance;
+    private MonitoringConfig alarms = new MonitoringConfig();
+    private MonitoringConfig performance = new MonitoringConfig();
+    private final McpttSecurity mcpttSecurity = new McpttSecurity();
 
     public String getAlarmUrl() {
         return getFullUrl(alarms.getHttpPath());
@@ -33,5 +37,11 @@ public abstract class BaseProperties {
         private String controllerPath;
         private boolean httpEnabled;
         private String httpPath;
+    }
+
+    @Getter
+    public static class McpttSecurity {
+        private final Map<String, String> assertedIdentityAuthorities = new HashMap<>();
+
     }
 }

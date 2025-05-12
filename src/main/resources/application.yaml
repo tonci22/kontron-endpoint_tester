@@ -23,6 +23,10 @@ app:
       controller-path: "/rest/cnms/sbi/vnf/cgms"
       http-enabled: true
       http-path: "/cnms/alarms"
+    mcptt-security:
+      asserted-identity-authorities:
+        '[sip:testSystemAdminXUI]': CGMS_ADMIN_PERMISSION
+        '[sip:test1]': CGMS_ADMIN_PERMISSION
 
   kms:
     base-url: "http://localhost:8591/kms"
@@ -36,3 +40,7 @@ app:
       controller-path: "/rest/cnms/sbi/vnf/kms"
       http-enabled: true
       http-path: "/cnms/alarms"
+    mcptt-security:
+      asserted-identity-authorities:
+        '[sip:testSystemAdminXUI]': CGMS_ADMIN_PERMISSION
+        '[sip:test1]': CGMS_ADMIN_PERMISSION

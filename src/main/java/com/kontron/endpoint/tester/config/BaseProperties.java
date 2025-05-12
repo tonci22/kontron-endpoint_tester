@@ -16,11 +16,20 @@ public abstract class BaseProperties {
     private MonitoringConfig performance = new MonitoringConfig();
     private final McpttSecurity mcpttSecurity = new McpttSecurity();
 
-    public String getAlarmUrl() {
+
+    public String getAlarmControllerUrl() {
+        return getFullUrl(alarms.getControllerPath());
+    }
+
+    public String getPerformanceControllerUrl() {
+        return getFullUrl(performance.getControllerPath());
+    }
+
+    public String getAlarmHttpUrl() {
         return getFullUrl(alarms.getHttpPath());
     }
 
-    public String getPerformanceUrl() {
+    public String getPerformanceHttpUrl() {
         return getFullUrl(performance.getHttpPath());
     }
 

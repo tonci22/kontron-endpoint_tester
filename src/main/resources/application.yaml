@@ -11,6 +11,7 @@ logging:
     com.kontron.endpoint.tester: DEBUG
 
 app:
+
   cgms:
     base-url: "http://localhost:8590/cgms"
     alarms:
@@ -22,7 +23,7 @@ app:
       controller-enabled: true
       controller-path: "/rest/cnms/sbi/vnf/cgms"
       http-enabled: true
-      http-path: "/cnms/alarms"
+      http-path: "/cnms/measurements"
     mcptt-security:
       asserted-identity-authorities:
         '[sip:testSystemAdminXUI]': CGMS_ADMIN_PERMISSION
@@ -39,7 +40,7 @@ app:
       controller-enabled: true
       controller-path: "/rest/cnms/sbi/vnf/kms"
       http-enabled: true
-      http-path: "/cnms/alarms"
+      http-path: "/cnms/measurements"
     mcptt-security:
       asserted-identity-authorities:
         '[sip:testSystemAdminXUI]': CGMS_ADMIN_PERMISSION

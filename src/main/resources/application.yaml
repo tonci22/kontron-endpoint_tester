@@ -43,5 +43,5 @@ app:
       http-path: "/cnms/measurements"
     mcptt-security:
       asserted-identity-authorities:
-        '[sip:testSystemAdminXUI]': CGMS_ADMIN_PERMISSION
-        '[sip:test1]': CGMS_ADMIN_PERMISSION
+        '[sip:testSystemAdminXUI]': KMS_AUD_ADMIN_PERMISSION
+        '[sip:test1]': KMS_AUD_ADMIN_PERMISSION

@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Configuration
 public class WebClientConfig {
@@ -24,19 +26,21 @@ public class WebClientConfig {
     }
 
     public WebClient createWebClient(BaseProperties.McpttSecurity mcpttSecurityProperties) {
+
         return WebClient
                 .builder()
-                .defaultHeader(ASSERTED_IDENTITY_HEADER, assertedIdentityValue(mcpttSecurityProperties))
+                .defaultHeaders(
+                        h -> assertedIdentityValues(mcpttSecurityProperties).forEach(
+                                ai -> h.set(ASSERTED_IDENTITY_HEADER, ai)
+                        )
+                )
                 .build();
     }
 
-    private String assertedIdentityValue(BaseProperties.McpttSecurity properties) {
-        String identity = properties
+    private List<String> assertedIdentityValues(BaseProperties.McpttSecurity properties) {
+        return properties
                 .getAssertedIdentityAuthorities()
-                .keySet()
-                .iterator()
-                .next();
-        return "\"" + identity + "\"";
+                .keySet().stream().map(identity -> "\"" + identity + "\"").toList();
     }
 
 }

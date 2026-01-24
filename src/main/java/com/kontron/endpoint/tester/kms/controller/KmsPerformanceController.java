@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("${app.kms.performance.controller-path}")
-@ConditionalOnProperty(name = "app.kms.performance.controller-enabled", havingValue = "true")
 public class KmsPerformanceController {
     private static final String PM_ENDPOINT = "/statistics";
 

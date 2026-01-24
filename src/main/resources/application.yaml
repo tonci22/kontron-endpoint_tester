@@ -15,14 +15,12 @@ app:
   cgms:
     base-url: "http://localhost:8590/cgms"
     alarms:
-      controller-enabled: true
       controller-path: "/rest/cnms/sbi/vnf/cgms"
-      http-enabled: true
+      http-enabled: false
       http-path: "/cnms/alarms"
     performance:
-      controller-enabled: true
       controller-path: "/rest/cnms/sbi/vnf/cgms"
-      http-enabled: true
+      http-enabled: false
       http-path: "/cnms/measurements"
     mcptt-security:
       asserted-identity-authorities:
@@ -32,14 +30,12 @@ app:
   kms:
     base-url: "http://localhost:8591/kms"
     alarms:
-      controller-enabled: true
       controller-path: "/rest/cnms/sbi/vnf/kms"
-      http-enabled: true
+      http-enabled: false
       http-path: "/cnms/alarms"
     performance:
-      controller-enabled: true
       controller-path: "/rest/cnms/sbi/vnf/kms"
-      http-enabled: true
+      http-enabled: false
       http-path: "/cnms/measurements"
     mcptt-security:
       asserted-identity-authorities:

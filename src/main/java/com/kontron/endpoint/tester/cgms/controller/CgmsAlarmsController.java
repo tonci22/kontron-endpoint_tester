@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("${app.cgms.alarms.controller-path}")
-@ConditionalOnProperty(name = "app.cgms.alarms.controller-enabled", havingValue = "true")
 public class CgmsAlarmsController {
     private static final String ALARM_ENDPOINT = "/alarms";
 

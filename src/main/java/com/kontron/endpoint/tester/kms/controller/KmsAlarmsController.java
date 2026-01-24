@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("${app.kms.alarms.controller-path}")
-@ConditionalOnProperty(name = "app.kms.alarms.controller-enabled", havingValue = "true")
 public class KmsAlarmsController {
     private static final String ALARM_ENDPOINT = "/alarms";
 

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("${app.cgms.performance.controller-path}")
-@ConditionalOnProperty(name = "app.cgms.performance.controller-enabled", havingValue = "true")
 public class CgmsPerformanceController {
 
     private static final String PM_ENDPOINT = "/statistics";
